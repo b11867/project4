@@ -7,17 +7,28 @@ var startSuffix = lastHyphen +1;
 var areaCode = myString.substring(0,hyphen);
 var prefix = myString.substring(startPrefix,lastHyphen);
 var suffix = myString.substring(startSuffix,myString.length);
-var phoneCheck = areaCode, prefix, suffix;
-/*alert (areaCode);
+var phoneCheck = areaCode + prefix + suffix;
+/*
+alert (areaCode);
 alert(prefix);
 alert(suffix);
 */
 var phoneNumCheck = function(phoneNumber){
-    //code goes here
-    if (phoneNumber == phoneCheck) {
-        console.log("The number you entered is valid.");
+    var phoneCheck;
+    if (areaCode.length == 3) {
+        if (prefix.length == 3) {
+            if (suffix.length == 4) {
+                phoneCheck = true;
+            } else {
+        phoneCheck = false;
+            }
+            //code
+        } else {
+        phoneCheck = false;
+        }
     } else {
-        console.log("The number you entered is not valid.");
-    }
+        phoneCheck = false;
+    } return phoneCheck;
 }
-phoneNumCheck(myString);
+var validPhone = phoneNumCheck(myString);
+console.log(validPhone);
