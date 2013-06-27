@@ -1,34 +1,37 @@
 //alert("JavaScript works!");
 var myString = "123-456-7890";
-var hyphen = myString.indexOf("-");
-var lastHyphen = myString.lastIndexOf("-");
-var startPrefix = myString.indexOf("-")+1;
-var startSuffix = lastHyphen +1;
-var areaCode = myString.substring(0,hyphen);
-var prefix = myString.substring(startPrefix,lastHyphen);
-var suffix = myString.substring(startSuffix,myString.length);
-var phoneCheck = areaCode + prefix + suffix;
-/*
-alert (areaCode);
-alert(prefix);
-alert(suffix);
-*/
-var phoneNumCheck = function(phoneNumber){
-    var phoneCheck;
-    if (areaCode.length == 3) {
-        if (prefix.length == 3) {
-            if (suffix.length == 4) {
-                phoneCheck = true;
-            } else {
-        phoneCheck = false;
-            }
-            //code
+var myLib = function(){
+//phone number string function
+    var phoneNumCheck = function(phoneNumber){
+        var hyphen = phoneNumber.indexOf("-");
+        var lastHyphen = phoneNumber.lastIndexOf("-");
+        var areaCode = phoneNumber.substring(0,hyphen);
+        var startPrefix = hyphen +1;
+        var prefix = phoneNumber.substring(startPrefix,lastHyphen);
+        var startSuffix = lastHyphen + 1;
+        var suffix = phoneNumber.substring(startSuffix,phoneNumber.length);
+        var phoneLength = areaCode + prefix + suffix;
+        if (isNaN(phoneLength)) {
+            return false;
         } else {
-        phoneCheck = false;
+            if (areaCode.length == 3) {
+               if (prefix.length == 3) {
+                    if (suffix.length == 4) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+               }
+            } else {
+                return false;
+            }
         }
-    } else {
-        phoneCheck = false;
-    } return phoneCheck;
+    }
+    return {
+        "phoneNumCheck" : phoneNumCheck
+    }
 }
-var validPhone = phoneNumCheck(myString);
-console.log(validPhone);
+var newLib = new myLib();
+console.log(newLib.phoneNumCheck(myString));
