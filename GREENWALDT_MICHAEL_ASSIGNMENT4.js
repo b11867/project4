@@ -1,5 +1,6 @@
 //alert("JavaScript works!");
 var myString = "123-456-7890";
+var myEmail = "mgreenwaldt@fullsail.edu";
 var myLib = function(){
 //phone number string function
     var phoneNumCheck = function(phoneNumber){
@@ -29,9 +30,25 @@ var myLib = function(){
             }
         }
     }
+    
+    // end function
+    // second function
+
+    var emailCheck = function(emailAddress){
+       var atSign = emailAddress.indexOf("@");
+       var period = emailAddress.lastIndexOf(".");
+       if (atSign < 1 || period < atSign + 3 || period + 3 >= emailAddress.length) {
+        return false;
+       } else {
+        return true;
+       }
+    }
+    
     return {
-        "phoneNumCheck" : phoneNumCheck
+    "phoneNumCheck" : phoneNumCheck,
+    "emailCheck" : emailCheck 
     }
 }
 var newLib = new myLib();
 console.log(newLib.phoneNumCheck(myString));
+console.log(newLib.emailCheck(myEmail));
