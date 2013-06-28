@@ -1,6 +1,9 @@
 //alert("JavaScript works!");
 var myString = "123-456-7890";
 var myEmail = "mgreenwaldt@fullsail.edu";
+var myArray = [1,15,35,14,19,23];
+var myNumber = 17;
+
 var myLib = function(){
 //phone number string function
     var phoneNumCheck = function(phoneNumber){
@@ -30,10 +33,8 @@ var myLib = function(){
             }
         }
     }
-    
     // end function
-    // second function
-
+    // email check function
     var emailCheck = function(emailAddress){
        var atSign = emailAddress.indexOf("@");
        var period = emailAddress.lastIndexOf(".");
@@ -44,11 +45,28 @@ var myLib = function(){
        }
     }
     
+    
+    //array function
+    var nextNumber = function(array,number){
+        array.sort();
+        var nextNumber;
+        for (i = 0; i< array.length; i ++) {
+            nextNumber = array[i];
+            if (nextNumber > number) {
+                return nextNumber;
+            }
+           
+        }
+    }
+    
+
     return {
     "phoneNumCheck" : phoneNumCheck,
-    "emailCheck" : emailCheck 
+    "emailCheck" : emailCheck,
+    "nextNumber" : nextNumber
     }
 }
 var newLib = new myLib();
 console.log(newLib.phoneNumCheck(myString));
 console.log(newLib.emailCheck(myEmail));
+console.log(newLib.nextNumber(myArray, myNumber));
